@@ -1,0 +1,32 @@
+services:
+  airflowservice:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+    - 8080:8080
+    volumes:
+      - ./dags/:/opt/airflow/dags
+
+  httpdata:
+    image: nginx
+    volumes:
+      - ./data:/usr/share/nginx/html
+
+  httpdata_nginx_intrusion:
+    image: nginx
+    volumes:
+      - ./data_intrusion:/usr/share/nginx/html
+
+
+  httpdata_apache_intrusion:
+    build:
+      dockerfile_inline: |
+        FROM httpd:2.4
+        COPY ./data_intrusion/dbip-country-lite-2026-01.csv /usr/local/apache2/htdocs/
+
+  datawarehouse:
+    image: postgres
+    environment:
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=dwh

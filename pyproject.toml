@@ -1,0 +1,9 @@
+[project]
+name = "dpre854-tp-2026-eid"
+version = "0.1.0"
+requires-python = ">=3.11"
+dependencies = [
+    "apache-airflow>=3.1.7",
+    "apache-airflow-providers-http>=5.6.4",
+    "pandas>=3.0.2",
+]
