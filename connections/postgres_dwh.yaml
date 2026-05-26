@@ -1,0 +1,7 @@
+postgres_dwh:
+  conn_type: postgres
+  host: postgres
+  login: postgres
+  password: password
+  schema: dwh
+  port: 5432
